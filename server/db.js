@@ -99,7 +99,7 @@ export default {
   deleteDomain: (id) => stmts.deleteDomain.run(id),
   listDomainsWithLatest: () => stmts.listAll.all(),
   dueDomains: (nowIso) => stmts.due.all(nowIso),
-  setNextCheck: (id, iso) => stmts.setNextCheck.run(id, iso),
+  setNextCheck: (id, iso) => stmts.setNextCheck.run(iso, id),
   insertCheck(domainId, r) {
     stmts.insertCheck.run(
       domainId,
