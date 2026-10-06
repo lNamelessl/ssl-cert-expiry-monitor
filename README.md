@@ -2,7 +2,7 @@
 
 A purpose-built, multi-domain TLS/SSL certificate expiry monitor. Add the domains you operate, see days-remaining at a glance, and get alerted at 30/14/7/3/1 days before a certificate expires — before your users do.
 
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.app/new?github_url=https://github.com/lNamelessl/ssl-cert-expiry-monitor)
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/ssl-cert-expiry-monitor)
 
 ## Features
 
