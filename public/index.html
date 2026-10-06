@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TLS Certificate Expiry Monitor</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <h1>TLS Certificate Expiry Monitor</h1>
+    <span id="health" class="pill">checking…</span>
+  </header>
+
+  <section id="pwPanel" class="panel" hidden>
+    <strong>Admin password required.</strong>
+    <span class="muted">Adding and removing domains is protected by ADMIN_PASSWORD.</span>
+    <form id="pwForm">
+      <input type="password" id="pwInput" placeholder="ADMIN_PASSWORD" autocomplete="current-password">
+      <button type="submit">Save</button>
+    </form>
+    <span id="pwMsg" class="muted"></span>
+  </section>
+
+  <section class="panel add-panel">
+    <form id="addForm">
+      <input id="host" placeholder="example.com" required spellcheck="false">
+      <input id="port" type="number" min="1" max="65535" placeholder="443">
+      <select id="interval">
+        <option value="1">check every 1h</option>
+        <option value="6" selected>check every 6h</option>
+        <option value="12">check every 12h</option>
+        <option value="24">check every 24h</option>
+      </select>
+      <button type="submit" class="btn">Add domain</button>
+    </form>
+    <span id="addMsg" class="muted"></span>
+  </section>
+
+  <main>
+    <table id="tbl">
+      <thead>
+        <tr>
+          <th>Domain</th><th>Status</th><th>Days left</th><th>Expires (UTC)</th>
+          <th>Issuer</th><th>Last check</th><th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <p id="empty" class="muted" hidden>No domains monitored yet — add one above.</p>
+  </main>
+
+  <footer id="meta" class="muted"></footer>
+  <script src="/app.js"></script>
+</body>
+</html>

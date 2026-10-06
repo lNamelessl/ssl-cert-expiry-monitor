@@ -1,0 +1,9 @@
+node_modules
+.git
+.gitattributes
+data
+scripts
+*.md
+.env
+*.log
+.railway
