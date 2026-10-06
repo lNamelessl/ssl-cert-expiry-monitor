@@ -4,7 +4,12 @@ FROM node:22-bookworm-slim AS deps
 WORKDIR /app
 ENV NPM_CONFIG_FUND=false NPM_CONFIG_AUDIT=false
 COPY package.json package-lock.json ./
-RUN npm ci --omit=dev
+# --ignore-scripts: better-sqlite3 v13 bundles its native prebuilds in the
+# tarball (prebuilds/linux-x64.node) and needs NO install step, but npm's
+# default auto-gyp (binding.gyp present, no install script) would demand
+# Python. Skipped scripts are safe: all deps are pure JS except better-sqlite3,
+# whose prebuild the require-smoke-test below proves loadable.
+RUN npm ci --omit=dev --ignore-scripts
 # Fail the BUILD (not the runtime) if the bundled better-sqlite3 prebuild
 # does not match this Node ABI. better-sqlite3 v13 ships prebuilds inside the
 # npm tarball (prebuildify) so this needs no compiler and no network.
